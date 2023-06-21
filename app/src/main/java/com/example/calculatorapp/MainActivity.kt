@@ -119,10 +119,8 @@ class MainActivity : AppCompatActivity() {
             val expression = ExpressionBuilder(expressionString).build()
             val result = expression.evaluate()
             finalresult.text = result.toString()
-            resultTextView.text=""
         } catch (e: Exception) {
             finalresult.text = "Invalid Expression"
-            resultTextView.text=""
             e.printStackTrace()
         }
 }
