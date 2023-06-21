@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
         buttonClear.setOnClickListener {
             finalresult.text = " "
+            resultTextView.text=" "
         }
 
         buttonEquals.setOnClickListener {
