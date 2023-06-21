@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         val buttonEquals: Button = findViewById(R.id.equals)
         val buttonClear: Button = findViewById(R.id.clear)
 
+        val buttonNegation: Button = findViewById(R.id.negative)
+
+        val buttonBackspace: Button = findViewById(R.id.delete)
+
 
         button0.setOnClickListener { appendNumber("0") }
         button1.setOnClickListener { appendNumber("1") }
@@ -72,13 +76,40 @@ class MainActivity : AppCompatActivity() {
             resultTextView.text = currentText + "*"
         }
         buttonClear.setOnClickListener {
-            resultTextView.text = " "
+            finalresult.text = " "
         }
 
         buttonEquals.setOnClickListener {
             evaluateExpression()
         }
 
+        buttonBackspace.setOnClickListener{
+            val currentText = resultTextView.text.toString()
+            val modifiedString = deleteLastCharacter(currentText)
+            resultTextView.text=modifiedString
+        }
+
+        buttonNegation.setOnClickListener{
+            val currentText = resultTextView.text.toString()
+            val modifiedString = negationCharacter(currentText)
+            resultTextView.text=modifiedString
+        }
+    }
+
+    fun deleteLastCharacter(input: String): String {
+        if (input.isEmpty()) {
+            return ""
+        } else {
+            return input.substring(0, input.length - 1)
+        }
+    }
+
+    fun negationCharacter(input: String): String {
+        return if (input.startsWith("-")) {
+            input.substring(1)
+        } else {
+            "-$input"
+        }
     }
 
     private fun evaluateExpression() {
